@@ -14,43 +14,43 @@ import java.util.Set;
  */
 public class NotificationHandlerChain {
 
-	private List<NotificationHandler> notificationHandlers = new LinkedList<>();
+    private List<NotificationHandler> notificationHandlers = new LinkedList<>();
 
-	public void process(JudgeResult judgeResult) {
-		if (notificationHandlers.size() == 0) {
-			return;
-		}
+    public void process(JudgeResult judgeResult) {
+        if (notificationHandlers.size() == 0) {
+            return;
+        }
 
-		filterEmptyOverNodes(judgeResult.getOverNodeMap());
-		filterEmptyOverQueues(judgeResult.getOverQueueMap());
+        filterEmptyOverNodes(judgeResult.getOverNodeMap());
+        filterEmptyOverQueues(judgeResult.getOverQueueMap());
 
-		notificationHandlers.parallelStream()
-				.forEach(notificationHandler -> notificationHandler.onHandle(judgeResult));
-	}
+        notificationHandlers.parallelStream()
+                .forEach(notificationHandler -> notificationHandler.onHandle(judgeResult));
+    }
 
-	public NotificationHandlerChain addOverHandlers(List<NotificationHandler> notificationHandlers) {
-		this.notificationHandlers.addAll(notificationHandlers);
-		return this;
-	}
+    public NotificationHandlerChain addOverHandlers(List<NotificationHandler> notificationHandlers) {
+        this.notificationHandlers.addAll(notificationHandlers);
+        return this;
+    }
 
-	public NotificationHandlerChain addOverHandler(NotificationHandler notificationHandler) {
-		this.notificationHandlers.add(notificationHandler);
-		return this;
-	}
+    public NotificationHandlerChain addOverHandler(NotificationHandler notificationHandler) {
+        this.notificationHandlers.add(notificationHandler);
+        return this;
+    }
 
-	public void setNotificationHandlers(List<NotificationHandler> notificationHandlers) {
-		this.notificationHandlers = notificationHandlers;
-	}
+    public void setNotificationHandlers(List<NotificationHandler> notificationHandlers) {
+        this.notificationHandlers = notificationHandlers;
+    }
 
-	private Map<PropertyValue, List<NodeInfo>> filterEmptyOverNodes(Map<PropertyValue, List<NodeInfo>> overNodeMap) {
-		Set<Map.Entry<PropertyValue, List<NodeInfo>>> entrySet = overNodeMap.entrySet();
-		entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
-		return overNodeMap;
-	}
+    private Map<PropertyValue, List<NodeInfo>> filterEmptyOverNodes(Map<PropertyValue, List<NodeInfo>> overNodeMap) {
+        Set<Map.Entry<PropertyValue, List<NodeInfo>>> entrySet = overNodeMap.entrySet();
+        entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
+        return overNodeMap;
+    }
 
-	private Map<PropertyValue, List<QueueInfo>> filterEmptyOverQueues(Map<PropertyValue, List<QueueInfo>> overQueueMap) {
-		Set<Map.Entry<PropertyValue, List<QueueInfo>>> entrySet = overQueueMap.entrySet();
-		entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
-		return overQueueMap;
-	}
+    private Map<PropertyValue, List<QueueInfo>> filterEmptyOverQueues(Map<PropertyValue, List<QueueInfo>> overQueueMap) {
+        Set<Map.Entry<PropertyValue, List<QueueInfo>>> entrySet = overQueueMap.entrySet();
+        entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
+        return overQueueMap;
+    }
 }

@@ -15,43 +15,43 @@ import java.util.stream.Stream;
  */
 public class JudgeResult {
 
-	private Map<PropertyValue, List<QueueInfo>> overQueueMap = new HashMap<>();
-	private Map<PropertyValue, List<NodeInfo>> overNodeMap = new HashMap<>();
+    private Map<PropertyValue, List<QueueInfo>> overQueueMap = new HashMap<>();
+    private Map<PropertyValue, List<NodeInfo>> overNodeMap = new HashMap<>();
 
-	{
-		PropertyValue[] propertyValues = PropertyValue.values();
-		Stream.of(propertyValues)
-				.forEach(propertyValue -> {
-					if (propertyValue.getCode().startsWith("node")) {
-						overNodeMap.put(propertyValue, new LinkedList<>());
-					}
-					if (propertyValue.getCode().startsWith("queue")) {
-						overQueueMap.put(propertyValue, new LinkedList<>());
-					}
-				});
-	}
+    {
+        PropertyValue[] propertyValues = PropertyValue.values();
+        Stream.of(propertyValues)
+                .forEach(propertyValue -> {
+                    if (propertyValue.getCode().startsWith("node")) {
+                        overNodeMap.put(propertyValue, new LinkedList<>());
+                    }
+                    if (propertyValue.getCode().startsWith("queue")) {
+                        overQueueMap.put(propertyValue, new LinkedList<>());
+                    }
+                });
+    }
 
-	public List<NodeInfo> getOverNodes(PropertyValue propertyValue) {
-		return overNodeMap.get(propertyValue);
-	}
+    public List<NodeInfo> getOverNodes(PropertyValue propertyValue) {
+        return overNodeMap.get(propertyValue);
+    }
 
-	public List<QueueInfo> getOverQueues(PropertyValue propertyValue) {
-		return overQueueMap.get(propertyValue);
-	}
+    public List<QueueInfo> getOverQueues(PropertyValue propertyValue) {
+        return overQueueMap.get(propertyValue);
+    }
 
-	public Map<PropertyValue, List<QueueInfo>> getOverQueueMap() {
-		return overQueueMap;
-	}
+    public Map<PropertyValue, List<QueueInfo>> getOverQueueMap() {
+        return overQueueMap;
+    }
 
-	public Map<PropertyValue, List<NodeInfo>> getOverNodeMap() {
-		return overNodeMap;
-	}
+    public Map<PropertyValue, List<NodeInfo>> getOverNodeMap() {
+        return overNodeMap;
+    }
 
-	@Override
-	public String toString() {
-		return "JudgeResult{" +
-				"overQueueMap=" + overQueueMap +
-				", overNodeMap=" + overNodeMap +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "JudgeResult{" +
+                "overQueueMap=" + overQueueMap +
+                ", overNodeMap=" + overNodeMap +
+                '}';
+    }
 }

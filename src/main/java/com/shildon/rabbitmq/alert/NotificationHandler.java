@@ -6,6 +6,6 @@ package com.shildon.rabbitmq.alert;
  */
 public interface NotificationHandler {
 
-	void onHandle(JudgeResult judgeResult);
+    void onHandle(JudgeResult judgeResult);
 
 }
