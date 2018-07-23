@@ -42,14 +42,14 @@ public class NotificationHandlerChain {
         this.notificationHandlers = notificationHandlers;
     }
 
-    private Map<PropertyValue, List<NodeInfo>> filterEmptyOverNodes(Map<PropertyValue, List<NodeInfo>> overNodeMap) {
-        Set<Map.Entry<PropertyValue, List<NodeInfo>>> entrySet = overNodeMap.entrySet();
+    private Map<PropertyValue, List<NodeInfoWrapper>> filterEmptyOverNodes(Map<PropertyValue, List<NodeInfoWrapper>> overNodeMap) {
+        Set<Map.Entry<PropertyValue, List<NodeInfoWrapper>>> entrySet = overNodeMap.entrySet();
         entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
         return overNodeMap;
     }
 
-    private Map<PropertyValue, List<QueueInfo>> filterEmptyOverQueues(Map<PropertyValue, List<QueueInfo>> overQueueMap) {
-        Set<Map.Entry<PropertyValue, List<QueueInfo>>> entrySet = overQueueMap.entrySet();
+    private Map<PropertyValue, List<QueueInfoWrapper>> filterEmptyOverQueues(Map<PropertyValue, List<QueueInfoWrapper>> overQueueMap) {
+        Set<Map.Entry<PropertyValue, List<QueueInfoWrapper>>> entrySet = overQueueMap.entrySet();
         entrySet.removeIf(entry -> entry.getValue() == null || entry.getValue().size() == 0);
         return overQueueMap;
     }

@@ -1,8 +1,5 @@
 package com.shildon.rabbitmq.alert;
 
-import com.rabbitmq.http.client.domain.NodeInfo;
-import com.rabbitmq.http.client.domain.QueueInfo;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,8 +12,8 @@ import java.util.stream.Stream;
  */
 public class JudgeResult {
 
-    private Map<PropertyValue, List<QueueInfo>> overQueueMap = new HashMap<>();
-    private Map<PropertyValue, List<NodeInfo>> overNodeMap = new HashMap<>();
+    private Map<PropertyValue, List<QueueInfoWrapper>> overQueueMap = new HashMap<>();
+    private Map<PropertyValue, List<NodeInfoWrapper>> overNodeMap = new HashMap<>();
 
     {
         PropertyValue[] propertyValues = PropertyValue.values();
@@ -31,19 +28,19 @@ public class JudgeResult {
                 });
     }
 
-    public List<NodeInfo> getOverNodes(PropertyValue propertyValue) {
+    public List<NodeInfoWrapper> getOverNodes(PropertyValue propertyValue) {
         return overNodeMap.get(propertyValue);
     }
 
-    public List<QueueInfo> getOverQueues(PropertyValue propertyValue) {
+    public List<QueueInfoWrapper> getOverQueues(PropertyValue propertyValue) {
         return overQueueMap.get(propertyValue);
     }
 
-    public Map<PropertyValue, List<QueueInfo>> getOverQueueMap() {
+    public Map<PropertyValue, List<QueueInfoWrapper>> getOverQueueMap() {
         return overQueueMap;
     }
 
-    public Map<PropertyValue, List<NodeInfo>> getOverNodeMap() {
+    public Map<PropertyValue, List<NodeInfoWrapper>> getOverNodeMap() {
         return overNodeMap;
     }
 
