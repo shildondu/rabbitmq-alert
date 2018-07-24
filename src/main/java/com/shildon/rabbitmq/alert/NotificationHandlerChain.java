@@ -1,8 +1,5 @@
 package com.shildon.rabbitmq.alert;
 
-import com.rabbitmq.http.client.domain.NodeInfo;
-import com.rabbitmq.http.client.domain.QueueInfo;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
